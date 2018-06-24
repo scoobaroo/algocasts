@@ -14,6 +14,28 @@
 
 const Stack = require('./stack');
 
-class Queue {}
+// stack has peek, pop, and push methods
+class Queue {
+    constructor(){
+        this.inbox = new Stack();
+        this.outbox = new Stack();
+    }
+    add(element){
+        this.inbox.push(element);
+    }
+    remove(){
+        while(this.inbox.peek()){
+            this.outbox.push(this.inbox.pop());
+        }
+        return this.outbox.pop();
+    }
+    peek(){
+        this.peekBox = this.inbox;
+        while(this.peekBox.peek()){
+            this.outbox.push(this.peekBox.pop());
+        }
+        return this.outbox.peek();
+    }
+}
 
 module.exports = Queue;
